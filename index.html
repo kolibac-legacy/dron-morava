@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>mapa @ morava</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+      #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+    </style>
+  </head>
+  <body>
+    <div id="map">
+    </div>
+    <p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a></p>
+    <script>
+      const map = L.map('map', {maxZoom:21, minZoom:14}).setView([49.52, 17.26], 14);
+
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 21,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      L.tileLayer(`tiles/{z}/{x}/{y}.png`,{
+          tileSize: 256,
+          //zoomOffset: -1,
+          maxZoom: 21,
+          minZoom: 14,
+          attribution: 'my',
+          //crossOrigin: true
+      }).addTo(map);
+    </script>
+  </body>
+</html>
