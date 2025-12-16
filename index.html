@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-ajax@2.1.0/dist/leaflet.ajax.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <style>
       #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
     </style>
@@ -37,6 +38,9 @@
           .bindPopup(function (layer) {
               return layer.feature.properties.popis;
           }).addTo(map);
+		$.getJSON("https://gist.githubusercontent.com/rostanetek/514574556d25c0985d03ab0d3ebb892d/raw/9af0ba4cd571e9701951d039f46db0a79b33e356/test.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+    L.geoJson(data).addTo(map);
     </script>
   </body>
 </html>
