@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="UTF-8">
     <title>mapa @ morava</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-ajax@2.1.0/dist/leaflet.ajax.js"></script>
+    <script src="./layerstyles.js"></script>
     <style>
       #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
     </style>
@@ -15,7 +17,7 @@
     </div>
     <p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a></p>
     <script>
-      const map = L.map('map', {maxZoom:21, minZoom:14}).setView([49.53, 17.26], 14);
+      const map = L.map('map', {maxZoom:21, minZoom:14}).setView([49.53, 17.26], 17);
 
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 21,
@@ -24,24 +26,105 @@
 
       L.control.scale().addTo(map);
 
-      L.tileLayer(`tiles/{z}/{x}/{y}.png`,{
+      var mapBounds = new L.LatLngBounds(
+          new L.LatLng(49.52, 17.25),
+          new L.LatLng(49.54, 17.27));
+      var tileLayer = L.tileLayer(`tiles/{z}/{x}/{y}.png`, {
           tileSize: 256,
           //zoomOffset: -1,
+          bounds: mapBounds,
           maxZoom: 21,
           minZoom: 14,
-          attribution: 'my',
+          attribution: 'Kolibáč, Kovář, Sýkora',
+          errorTileUrl: 'tiles/404.png'
           //crossOrigin: true
       }).addTo(map);
 
-      var geojsonLayer = new L.geoJson.ajax('./data.geojson')
+      var pathPolyLayer = new L.geoJson.ajax('./layers/pathpoly.json',
+                                             { style: pathStyle });
+
+      var pathLineLayer = new L.geoJson.ajax('./layers/pathline.json',
+                                             { style: { ...pathStyle, ...pathLineStyle } })
+          .addTo(map);
+
+      var riverPolyLayer = new L.geoJson.ajax('./layers/riverpoly.json',
+                                              { style: waterStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          });
+
+      var riverLineLayer = new L.geoJson.ajax('./layers/riverline.json',
+                                              { style: { ...waterStyle, ...riverLineStyle } })
           .bindPopup(function (layer) {
               return layer.feature.properties.popis;
           }).addTo(map);
-		var overlayLayers = {
-			"Krajina": geojsonLayer,
-		};
 
-		L.control.layers(null, overlayLayers).addTo(map);
+      var waterLayer = new L.geoJson.ajax('./layers/water.json',
+                                          { style: waterStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          }).addTo(map);
+
+      var gardenLayer = new L.geoJson.ajax('./layers/garden.json',
+                                          { style: gardenStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          });
+
+      var meadowLayer = new L.geoJson.ajax('./layers/meadow.json',
+                                          { style: meadowStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          });
+
+      var woodsLayer = new L.geoJson.ajax('./layers/woods.json',
+                                          { style: woodsStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          });
+
+      var fieldsLayer = new L.geoJson.ajax('./layers/fields.json',
+                                          { style: fieldsStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          });
+
+      // layer control
+      var pathGroup = L.layerGroup([pathPolyLayer, pathLineLayer]);
+      var riverGroup = L.layerGroup([riverPolyLayer, riverLineLayer]);
+      var overlayLayers = {
+          "Blatecká štěrkovna": waterLayer,
+          "řeka Morava": riverGroup,
+          "cesty": pathGroup,
+          "zahrada": gardenLayer,
+          "louky": meadowLayer,
+          "les": woodsLayer,
+          "pole": fieldsLayer
+      };
+      L.control.layers(null, overlayLayers).addTo(map);
+
+      // zoom control
+      function manageLayerVisibility() {
+          var zoomLevel = map.getZoom();
+
+          if (zoomLevel >= 17) {
+              if (!map.hasLayer(pathPolyLayer))  { map.addLayer(pathPolyLayer); }
+              if (map.hasLayer(pathLineLayer))   { map.removeLayer(pathLineLayer); }
+              if (!map.hasLayer(riverPolyLayer)) { map.addLayer(riverPolyLayer); }
+              if (map.hasLayer(riverLineLayer))  { map.removeLayer(riverLineLayer); }
+              riverPolyLayer.setStyle(closePolyStyle);
+              waterLayer.setStyle(closePolyStyle);
+          } else {
+              if (map.hasLayer(pathPolyLayer))   { map.removeLayer(pathPolyLayer); }
+              if (!map.hasLayer(pathLineLayer))  { map.addLayer(pathLineLayer); }
+              if (map.hasLayer(riverPolyLayer))  { map.removeLayer(riverPolyLayer); }
+              if (!map.hasLayer(riverLineLayer)) { map.addLayer(riverLineLayer); }
+              waterLayer.setStyle(distantPolyStyle);
+          }
+      }
+      map.on('zoomend', manageLayerVisibility);
+      map.on('overlayadd', manageLayerVisibility);
+
     </script>
   </body>
 </html>

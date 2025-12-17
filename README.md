@@ -3,12 +3,15 @@
 ## lokalita
 
 * Blatecká štěrkovna
+    * zajímavá turistická lokalita (polní cesta na břehu Moravy, alternativa k cyklostezkám přes vesnice)
 * původní záměr: Hlubočky
     * omezení letového provozu kvůli vojenskému prostoru Libavá
 
 ## sběr dat
 
 * TODO
+* limit 99 waypoints → let na dvě části
+* zapomenutá microSDHC karta ve dronu :-]
 
 ## zpracování dat
 
@@ -29,4 +32,8 @@
 
 ## front-end
 
+* GeoJSON rozsekán
+* generalizace polygon → linie při oddálení
 * TODO
+
+![Morava, 6. listopadu 2025](./morava_m.jpg)

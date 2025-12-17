@@ -1,0 +1,209 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": 41,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        17.26540650000004,
+                        49.52250785700005
+                    ],
+                    [
+                        17.264378064000027,
+                        49.52284563000006
+                    ],
+                    [
+                        17.263873471000068,
+                        49.52297870900003
+                    ],
+                    [
+                        17.26333006400006,
+                        49.52322268800003
+                    ],
+                    [
+                        17.263141535000045,
+                        49.52354984100003
+                    ],
+                    [
+                        17.263080540000033,
+                        49.52396571400004
+                    ],
+                    [
+                        17.26324134500004,
+                        49.52440376700008
+                    ],
+                    [
+                        17.263604429000054,
+                        49.52476019800008
+                    ],
+                    [
+                        17.264090612000075,
+                        49.52501571000005
+                    ],
+                    [
+                        17.26440645400004,
+                        49.525093783000045
+                    ],
+                    [
+                        17.264814564000062,
+                        49.525040551000075
+                    ],
+                    [
+                        17.265137503000062,
+                        49.52495538100004
+                    ],
+                    [
+                        17.265389466000045,
+                        49.52486666100003
+                    ]
+                ]
+            },
+            "properties": {
+                "OBJECTID": 41,
+                "nazev": "Slepá ramena řeky Moravy",
+                "popis": "Slepá ramena řeky Moravy u Charvátů jsou dřívější koryto řeky Moravy, které bylo odříznuto regulací toku a dnes fungují jako samostatná vodní plocha — mokřad s vytrvalou vlhkostí a velkým ekologickým potenciálem. Letos v létě proběhla jejich revitalizace."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 42,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        17.264751640000043,
+                        49.520306780000055
+                    ],
+                    [
+                        17.26520920300004,
+                        49.52031864000003
+                    ]
+                ]
+            },
+            "properties": {
+                "OBJECTID": 42,
+                "nazev": "Slepá ramena řeky Moravy",
+                "popis": "Slepá ramena řeky Moravy u Charvátů jsou dřívější koryto řeky Moravy, které bylo odříznuto regulací toku a dnes fungují jako samostatná vodní plocha — mokřad s vytrvalou vlhkostí a velkým ekologickým potenciálem. Letos v létě proběhla jejich revitalizace."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        17.265253392000034,
+                        49.52033473800003
+                    ],
+                    [
+                        17.26536334700006,
+                        49.52039789400004
+                    ],
+                    [
+                        17.26591979600005,
+                        49.52042741900004
+                    ],
+                    [
+                        17.266315698000028,
+                        49.52035970900005
+                    ],
+                    [
+                        17.26703610100003,
+                        49.52039874500008
+                    ],
+                    [
+                        17.267745857000023,
+                        49.52047327000008
+                    ],
+                    [
+                        17.268342052000037,
+                        49.520771367000066
+                    ],
+                    [
+                        17.268494650000036,
+                        49.52106946500004
+                    ],
+                    [
+                        17.26836334500007,
+                        49.52145273300005
+                    ],
+                    [
+                        17.268065247000038,
+                        49.52172599000005
+                    ],
+                    [
+                        17.267195796000067,
+                        49.521981502000074
+                    ],
+                    [
+                        17.267155340000045,
+                        49.52199229000007
+                    ]
+                ]
+            },
+            "properties": {
+                "OBJECTID": 43,
+                "nazev": "Slepá ramena řeky Moravy",
+                "popis": "Slepá ramena řeky Moravy u Charvátů jsou dřívější koryto řeky Moravy, které bylo odříznuto regulací toku a dnes fungují jako samostatná vodní plocha — mokřad s vytrvalou vlhkostí a velkým ekologickým potenciálem. Letos v létě proběhla jejich revitalizace."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 51,
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        17.26376057600004,
+                        49.52020711100005
+                    ],
+                    [
+                        17.264871344000028,
+                        49.52116173300004
+                    ],
+                    [
+                        17.266100145000053,
+                        49.52253387700006
+                    ],
+                    [
+                        17.266573959000027,
+                        49.52306184100007
+                    ],
+                    [
+                        17.267264373000046,
+                        49.52352211700003
+                    ],
+                    [
+                        17.268536900000072,
+                        49.524185455000065
+                    ],
+                    [
+                        17.26941683900003,
+                        49.52475403100004
+                    ],
+                    [
+                        17.26980942800003,
+                        49.52528199500006
+                    ],
+                    [
+                        17.270080178000057,
+                        49.525904721000074
+                    ],
+                    [
+                        17.270178103000035,
+                        49.52648313100008
+                    ]
+                ]
+            },
+            "properties": {
+                "OBJECTID": 51,
+                "popis": "Morava je řeka ve střední Evropě, levý přítok Dunaje. Délkou toku na moravském území (284 km, tj. 80 % z celkové délky 354 km) a plochou povodí je v Česku po Vltavě a Labi třetí největší řekou.",
+                "nazev": "Morava"
+            }
+        }
+    ]
+}
