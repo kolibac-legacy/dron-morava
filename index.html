@@ -8,24 +8,40 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-ajax@2.1.0/dist/leaflet.ajax.js"></script>
     <script src="./layerstyles.js"></script>
+	<link rel="stylesheet" href="css/style.css">
     <style>
-      #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+      #map {position: absolute; top: 10; right: 0; bottom: 0; left: 10;}
     </style>
+	<style>#map { width: 800px; height: 740px; }
+	.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+	.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
   </head>
   <body>
-    <header>
-      <h1>Blatecká štěrkovna</h1>
-    </header>
+	<h1>Blatecká Štěrkovna</h1>
+	<p><b>Popis:</b></p>
+	<p>Menší pískovna v záhybu bývalého meandru řeky Moravy (dnes odříznuté rameno) asi 0,8 km<br>severovýchodně od obce Charváty (okres Olomouc).</p>
+	<p><b>Katastrální území:</b></p>
+	<p>Blatec</p>
+	<p><b>Rozloha:</b></p>
+	<p>1,1 ha</p>
+	<p><b>GPS:</b></p>
+	<p>49°31'27.149"N, 17°15'51.832"E:</p>
+	<p><b>Rybářský revír:</b></p>
+	<p>471 056 Morava – Olomoucké štěrkovny 1A, 10. Blatecká</p>
+	<p><b>Přírodní stav lokality:</b></p>
+	<p>Pískovna se nachází na vnitřní straně záhybu bývalého meandru Moravy, dnes odříznutého od toku.<br>Kromě samotného meandru s břehovými dřevinnými porosty sousedí s pískovnou intenzivně<br>obhospodařovaná louka. Širší okolí lokality tvoří pole. Pískovna je využívána pro rybolov<br>a chov kachen.</p>
+	<p><b>Zdroj:</b> <a href="http://www.sagittaria.cz/cs/piskovny-charvaty">Sagittaria</a></p>
     <div id="map">
     </div>
-    <p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a></p>
     <script>
-      const map = L.map('map', {maxZoom:21, minZoom:14}).setView([49.522990, 17.266442], 17);
+      const map = L.map('map', {maxZoom:21, minZoom:14}).setView([49.523, 17.266], 16);
 
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 21,
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map);
+      L.tileLayer(`https://api.mapy.cz/v1/maptiles/aerial/256/{z}/{x}/{y}?apikey=${'5ZtGuQEtvV37xyC_1IJnglc8ZgP53ehgvFqTiHuaFoI'}`, {
+		minZoom: 0,
+		maxZoom: 19,
+		attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
+	}).addTo(map);
+
 
       L.control.scale().addTo(map);
 
@@ -75,7 +91,7 @@
       });
 
       var waterLayer = new L.geoJson.ajax('./layers/water.json',
-                                          { style: waterStyle })
+                                          { style: sterkovnaStyle })
           .bindPopup(function (layer) {
               return layer.feature.properties.popis;
           }).addTo(map);
@@ -133,7 +149,39 @@
       }
       map.on('zoomend', manageLayerVisibility);
       map.on('overlayadd', manageLayerVisibility);
+	  
+		
+		function getColor(d) {
+			return d > 6  ? '#E1B88D' :
+				d > 5   ? '#267F00' :
+				d > 4   ? '#00FF21' :
+				d > 3   ? '#B6FF00' :
+				d > 2   ? '#eef0d5' :
+				d > 1   ? '#0094FF' : '#0026FF';
+		}
+		const legend = L.control({position: 'bottomright'});
 
+		legend.onAdd = function (map) {
+
+		const div = L.DomUtil.create('div', 'info legend');
+		const grades = [0, 1, 2, 3, 4, 5, 6];
+		const nazvy = ["Blatecká Štěrkovna", "Morava", "Cesty", "Zahrada", "Louky", "Les", "Pole"];
+		const titleLeg = "<b>Rozdělení krajiny</b>"
+		const labels = [`${titleLeg}`];
+		let from, to;
+
+		for (let i = 0; i < grades.length; i++) {
+			from = grades[i];
+			typy = nazvy[i];
+			to = grades[i + 1];
+
+			labels.push(`<i style="background:${getColor(from + 1)}"></i> ${typy}`);
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+	};
+	legend.addTo(map);
     </script>
   </body>
 </html>

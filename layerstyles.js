@@ -18,7 +18,13 @@ const pathLineStyle = {
 }
 
 const waterStyle = {
-    fillColor: '#a4d8e1',
+    fillColor: '#0094FF',
+    color: '#007b7f',
+    ...polyStyle
+};
+
+const sterkovnaStyle = {
+    fillColor: '#0026FF',
     color: '#007b7f',
     ...polyStyle
 };
@@ -33,24 +39,24 @@ const waterLineHoverStyle = {
 };
 
 const riverLineStyle = {
-    color: '#a4d8e1',
+    color: '#0094FF',
     weight: 3
 }
 
 const gardenStyle = {
-    fillColor: '#D1E7E0',
+    fillColor: '#B6FF00',
     color: '#4F7A7A',
     ...polyStyle
 };
 
 const meadowStyle = {
-    fillColor: '#A8D8B9',
+    fillColor: '#00FF21',
     color: '#3A5D4C',
     ...polyStyle
 };
 
 const woodsStyle = {
-    fillColor: '#A8D8A0',
+    fillColor: '#267F00',
     color: '#5A8B3A',
     ...polyStyle
 };
