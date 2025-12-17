@@ -144,14 +144,16 @@
 
 		const div = L.DomUtil.create('div', 'info legend');
 		const grades = [0, 1, 2, 3, 4, 5, 6, 7];
+		const nazvy = [0, 1, 2, 3, 4, 5, 6, "Japan"];
 		const labels = [];
 		let from, to;
 
 		for (let i = 0; i < grades.length; i++) {
 			from = grades[i];
+			typy = nazvy[i];
 			to = grades[i + 1];
 
-			labels.push(`<i style="background:${getColor(from + 1)}"></i> ${from}${to ? `&ndash;${to}` : '+'}`);
+			labels.push(`<i style="background:${getColor(from + 1)}"></i> ${typy}${to ? `&ndash;${to}` : '+'}`);
 		}
 
 		div.innerHTML = labels.join('<br>');
