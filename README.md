@@ -18,6 +18,7 @@ Martin - tvorba mapy na webu, pomoc se zpracováním dat
 ## dron
 * DJI Mavic Pro
 * Aplikace DJI fly
+* limit 99 waypoints → let na dvě části
 * při letu potíže s vybitou baterií a nutnost dělat let po částech nadvakrát kvůli tomu, že jsme misi omylem ukončili a ne přerušili
 * jinak vše v pohodě
 * výška letu - 110 m - kvůli stromům
@@ -27,11 +28,7 @@ Martin - tvorba mapy na webu, pomoc se zpracováním dat
 * území cca 600x600 m
 * počasí jasné, bezvětří, čas cca 14:00, první polovina listopadu
 
-## sběr dat
-
-* TODO
-* limit 99 waypoints → let na dvě části
-* zapomenutá microSDHC karta ve dronu :-]
+![Morava, 6. listopadu 2025](./morava_m.jpg)
 
 ## zpracování dat
 
@@ -58,5 +55,4 @@ Martin - tvorba mapy na webu, pomoc se zpracováním dat
 * GeoJSON rozsekán
 * generalizace polygon → linie při oddálení
 * TODO
-
-![Morava, 6. listopadu 2025](./morava_m.jpg)
+* agilní zapracování zpětné vazby
