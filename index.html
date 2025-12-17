@@ -33,10 +33,142 @@
           //crossOrigin: true
       }).addTo(map);
 
-      var geojsonLayer = new L.geoJson.ajax('./data.geojson')
+      const polyStyle = {
+          weight: 2,
+          fillOpacity: 0.7,
+          opacity: 1
+      };
+
+      const pathStyle = {
+          fillColor: '#eef0d5',
+          color: '#8b6a4a',
+          ...polyStyle,
+          fillOpacity: 0.5
+      };
+
+      const pathLineStyle = {
+          color: '#eef0d5',
+      }
+
+      const waterStyle = {
+          fillColor: '#a4d8e1',
+          color: '#007b7f',
+          ...polyStyle
+      };
+
+      const riverLineStyle = {
+          color: '#a4d8e1',
+      }
+
+      const gardenStyle = {
+          fillColor: '#D1E7E0',
+          color: '#4F7A7A',
+          ...polyStyle
+      };
+
+      const meadowStyle = {
+          fillColor: '#A8D8B9',
+          color: '#3A5D4C',
+          ...polyStyle
+      };
+
+      const woodsStyle = {
+          fillColor: '#A8D8A0',
+          color: '#5A8B3A',
+          ...polyStyle
+      };
+
+      const fieldsStyle = {
+          fillColor: '#DFAF6E',
+          color: '#A74F25',
+          ...polyStyle
+      };
+
+      const closePolyStyle = {
+          weight: 5,
+      }
+      const distantPolyStyle = {
+          weight: 2,
+      }
+
+      var pathPolyLayer = new L.geoJson.ajax('./layers/pathpoly.json',
+                                             { style: pathStyle })
+          .addTo(map);
+
+      var pathLineLayer = new L.geoJson.ajax('./layers/pathline.json',
+                                             { style: { ...pathStyle, ...pathLineStyle } })
+          .addTo(map);
+
+      var riverPolyLayer = new L.geoJson.ajax('./layers/riverpoly.json',
+                                              { style: waterStyle })
           .bindPopup(function (layer) {
               return layer.feature.properties.popis;
           }).addTo(map);
+
+      var riverLineLayer = new L.geoJson.ajax('./layers/riverline.json',
+                                              { style: { ...waterStyle, ...riverLineStyle } })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          }).addTo(map);
+
+      var waterLayer = new L.geoJson.ajax('./layers/water.json',
+                                          { style: waterStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          }).addTo(map);
+
+      var gardenLayer = new L.geoJson.ajax('./layers/garden.json',
+                                          { style: gardenStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          }).addTo(map);
+
+      var meadowLayer = new L.geoJson.ajax('./layers/meadow.json',
+                                          { style: meadowStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          }).addTo(map);
+
+      var woodsLayer = new L.geoJson.ajax('./layers/woods.json',
+                                          { style: woodsStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          }).addTo(map);
+
+      var fieldsLayer = new L.geoJson.ajax('./layers/fields.json',
+                                          { style: fieldsStyle })
+          .bindPopup(function (layer) {
+              return layer.feature.properties.popis;
+          }).addTo(map);
+
+      // zoom control
+      function manageLayerVisibility() {
+          var zoomLevel = map.getZoom();
+
+          if (zoomLevel >= 17) {
+              if (!map.hasLayer(pathPolyLayer))  { map.addLayer(pathPolyLayer); }
+              if (map.hasLayer(pathLineLayer))   { map.removeLayer(pathLineLayer); }
+              if (!map.hasLayer(riverPolyLayer)) { map.addLayer(riverPolyLayer); }
+              if (map.hasLayer(riverLineLayer))  { map.removeLayer(riverLineLayer); }
+              riverPolyLayer.setStyle(closePolyStyle);
+              waterLayer.setStyle(closePolyStyle);
+          } else {
+              if (map.hasLayer(pathPolyLayer))   { map.removeLayer(pathPolyLayer); }
+              if (!map.hasLayer(pathLineLayer))  { map.addLayer(pathLineLayer); }
+              if (map.hasLayer(riverPolyLayer))  { map.removeLayer(riverPolyLayer); }
+              if (!map.hasLayer(riverLineLayer)) { map.addLayer(riverLineLayer); }
+              waterLayer.setStyle(distantPolyStyle);
+          }
+      }
+      map.on('zoomend', manageLayerVisibility);
+
+      // layer overlay control
+      var overlayLayers = {
+	  'paths': pathLineLayer,
+          'water': waterLineLayer
+      };
+      L.control.layers(null, overlayLayers).addTo(map);
+
     </script>
   </body>
 </html>
