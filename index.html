@@ -17,16 +17,18 @@
 	.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
   </head>
   <body>
+	<h1>Blatecká štěrkovna</h1>
     <div id="map">
     </div>
-    <p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a></p>
     <script>
       const map = L.map('map', {maxZoom:21, minZoom:14}).setView([49.523, 17.266], 16);
 
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 21,
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map);
+      L.tileLayer(`https://api.mapy.cz/v1/maptiles/aerial/256/{z}/{x}/{y}?apikey=${'5ZtGuQEtvV37xyC_1IJnglc8ZgP53ehgvFqTiHuaFoI'}`, {
+		minZoom: 0,
+		maxZoom: 19,
+		attribution: '<a href="https://api.mapy.cz/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
+	}).addTo(map);
+
 
       L.control.scale().addTo(map);
 
