@@ -1,17 +1,34 @@
 # dron-morava
 
+## rozdělení práce
+Honza - pilot dronu, sběr dat, fotointerpretace
+David - zpracování snímků, tvorba ortofota,  nahrávání do webového prostředí
+Martin - tvorba mapy na webu, pomoc se zpracováním dat
+
 ## lokalita
 
-* Blatecká štěrkovna
-    * zajímavá turistická lokalita (polní cesta na břehu Moravy, alternativa k cyklostezkám přes vesnice)
+* Blatecká štěrkovna u obce Charváty a slepá ramena řeky Moravy
+* Zajímavá lokality, krásná příroda
+* potenciál být chráněným územím
+* Blatecká štěrkovna je rybářský revír
+* zajímavá turistická lokalita (polní cesta na břehu Moravy, alternativa k cyklostezkám přes vesnice)
 * původní záměr: Hlubočky
     * omezení letového provozu kvůli vojenskému prostoru Libavá
 
-## sběr dat
-
-* TODO
+## dron
+* DJI Mavic Pro
+* Aplikace DJI fly
 * limit 99 waypoints → let na dvě části
-* zapomenutá microSDHC karta ve dronu :-]
+* při letu potíže s vybitou baterií a nutnost dělat let po částech nadvakrát kvůli tomu, že jsme misi omylem ukončili a ne přerušili
+* jinak vše v pohodě
+* výška letu - 110 m - kvůli stromům
+* překryv 60 a 80%
+* rozlišení 20 cm
+* cca 15 letových řad
+* území cca 600x600 m
+* počasí jasné, bezvětří, čas cca 14:00, první polovina listopadu
+
+![Morava, 6. listopadu 2025](./morava_m.jpg)
 
 ## zpracování dat
 
@@ -27,7 +44,10 @@
 
 ## fotointerpretace
 
-* TODO
+* ArcGIS Pro
+* Nejprve polygony
+* Poté vybrané liniové prvky zmapovány (nejprve lesy, poté pole, louky, zahrada, řeka, slepá ramena  a na konec cesty)
+* Doplněny informace o řece Moravě, Blatecké štěrkovně a slepých ramenech do atributové tabulky (textový popis)
 * export do GeoJSON
 
 ## front-end
@@ -35,5 +55,4 @@
 * GeoJSON rozsekán
 * generalizace polygon → linie při oddálení
 * TODO
-
-![Morava, 6. listopadu 2025](./morava_m.jpg)
+* agilní zapracování zpětné vazby

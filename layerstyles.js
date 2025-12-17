@@ -29,6 +29,15 @@ const sterkovnaStyle = {
     ...polyStyle
 };
 
+const waterHoverStyle = {
+    fillColor: '#82c6d9',
+    color: '#005f63'
+};
+
+const waterLineHoverStyle = {
+    color: '#82c6d9'
+};
+
 const riverLineStyle = {
     color: '#0094FF',
     weight: 3
