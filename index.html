@@ -34,7 +34,10 @@
     <div id="map">
     </div>
     <script>
-      const map = L.map('map', {maxZoom:21, minZoom:14}).setView([49.523, 17.266], 16);
+      const startingLat = 49.523;  
+	  const startingLng = 17.266;
+	  const startingZoom = 16;
+	  const map = L.map('map', {maxZoom:21, minZoom:14}).setView([startingLat, startingLng], startingZoom);
 
       L.tileLayer(`https://api.mapy.cz/v1/maptiles/aerial/256/{z}/{x}/{y}?apikey=${'5ZtGuQEtvV37xyC_1IJnglc8ZgP53ehgvFqTiHuaFoI'}`, {
 		minZoom: 0,
@@ -182,6 +185,17 @@
 		return div;
 	};
 	legend.addTo(map);
+	L.Control.Home = L.Control.extend({
+        onAdd: function(map) {
+            const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+            const button = L.DomUtil.create('a', 'home-icon', container);
+            button.href = '#'; button.title = "Domů"; button.innerHTML = 'H';
+            button.onclick = function(e) { e.preventDefault(); map.setView([startingLat, startingLng], startingZoom); }
+            L.DomEvent.disableClickPropagation(container);
+            return container;
+        },
+    });
+    map.addControl(new L.Control.Home({ position: 'topleft' }));
     </script>
   </body>
 </html>
