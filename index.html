@@ -189,7 +189,7 @@
         onAdd: function(map) {
             const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
             const button = L.DomUtil.create('a', 'home-icon', container);
-            button.href = '#'; button.title = "Domů"; button.innerHTML = 'H';
+            button.href = '#'; button.title = "Domů"; button.innerHTML = '🏠';
             button.onclick = function(e) { e.preventDefault(); map.setView([startingLat, startingLng], startingZoom); }
             L.DomEvent.disableClickPropagation(container);
             return container;
